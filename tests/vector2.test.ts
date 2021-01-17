@@ -1,6 +1,8 @@
 import { create as vec2 } from "../src/vector/vec2"
 import * as vec from "../src/vector/vector"
 
+import { isEqual } from "../src/utils"
+
 describe("Vector 2D test suite", () => {
 
     it("it should add two vectors", () => {
@@ -11,7 +13,7 @@ describe("Vector 2D test suite", () => {
 
         let result = vec.add(a, b);
 
-        expect(vec.isEqual(result, expected)).toBeTruthy()
+        expect(isEqual(result, expected)).toBeTruthy()
     })
 
     it("it should substract two vectors", () => {
@@ -22,7 +24,7 @@ describe("Vector 2D test suite", () => {
 
         let result = vec.sub(a, b);
 
-        expect(vec.isEqual(result, expected)).toBeTruthy()
+        expect(isEqual(result, expected)).toBeTruthy()
     })
 
     it("it should multiply a vector by a scalar", () => {
@@ -32,7 +34,7 @@ describe("Vector 2D test suite", () => {
 
         let result = vec.multiply(a, 3)
 
-        expect(vec.isEqual(result, expected)).toBeTruthy()
+        expect(isEqual(result, expected)).toBeTruthy()
     })
 
     it("it should divide a vector by a scalar", () => {
@@ -42,7 +44,7 @@ describe("Vector 2D test suite", () => {
 
         let result = vec.divide(a, 2)
 
-        expect(vec.isEqual(result, expected)).toBeTruthy()
+        expect(isEqual(result, expected)).toBeTruthy()
     })
 
     it("it should calculate the lenght of a vector", () => {

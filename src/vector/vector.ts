@@ -2,10 +2,7 @@ import * as vec2 from "./vec2"
 import * as vec3 from "./vec3"
 import * as vec4 from "./vec4"
 
-
-interface funcMapper {
-    [index: number] : (...params: any) => any
-}
+import { funcMapper, EPSILON} from "../utils"
 
 export function length(vec: vec2.Vec2) : number;
 export function length(vec: vec3.Vec3) : number;
@@ -120,19 +117,4 @@ export function sub(a: number[], b: number[]) : number[] {
     }
 
     return subMap[aDim](a, b)    
-}
-
-export function isEqual(a: number[], b: number[]): boolean {
-
-    const EPSILON = 0.00001
-
-    if(a.length !== b.length) return false;
-
-    for(let i = 0; i < a.length; i++) {
-        if(Math.abs(a[i] - b[i]) > EPSILON){
-            return false
-        }
-    }
-
-    return true
 }

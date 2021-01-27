@@ -1,3 +1,10 @@
+export const EPSILON = 0.00001
+
+
+export interface funcMapper {
+    [index: number] : (...params: any) => any
+}
+
 /**
  * Zip function mainly used for vectors. 
  * Given an array of numbers this function will make tuples
@@ -24,4 +31,17 @@ export function zip(...arrays: any[][]): any[][] {
     }
 
     return result
+}
+
+export function isEqual(a: number[], b: number[]): boolean {
+
+    if(a.length !== b.length) return false;
+
+    for(let i = 0; i < a.length; i++) {
+        if(Math.abs(a[i] - b[i]) > EPSILON){
+            return false
+        }
+    }
+
+    return true
 }

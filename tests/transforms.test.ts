@@ -59,4 +59,20 @@ describe("Translation, Rotation and Scaling transforms unit tests", () => {
 
         expect(isEqual(res, expected)).toBeTruthy()
     })
+
+    it("should create a view transform", () => {
+
+        const pointA = vec4(0.0, 0.0, 5.0, 1.0)
+
+        const eye = vec4(0.0, 0.0, -1.0, 1.0)
+        const target = vec4(0.0, 0.0, 1.0, 1.0)
+        const up = vec4(0.0, 1.0, 0.0, 0.0)
+
+        const viewMat = transforms.lookAt(eye, target, up)
+
+        const expected = vec4(0.0, 0.0, -6.0, 1.0)
+        const res = vecMul(viewMat, pointA)
+
+        expect(isEqual(res, expected)).toBeTruthy()
+    })
 })

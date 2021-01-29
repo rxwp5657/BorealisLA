@@ -16,6 +16,13 @@ export function dot(a: Vec4, b: Vec4): number {
     return a[0] * b[0] + a[1] * b[1] + a[2] * b[2] + a[3] * b[3]
 }
 
+export function cross(a: Vec4, b: Vec4) : Vec4 {
+    return [a[1] * b[2] - a[2] * b[1],
+            a[2] * b[0] - a[0] * b[2],
+            a[0] * b[1] - a[1] * b[0],
+            0]
+}
+
 export function multiply(vec: Vec4, s: number) : Vec4 {
     return [vec[0] * s, vec[1] * s, vec[2] * s, vec[3] * s]
 }

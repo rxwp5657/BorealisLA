@@ -45,3 +45,11 @@ export function isEqual(a: number[], b: number[]): boolean {
 
     return true
 }
+
+export function toRadians(degrees: number): number {
+    return (Math.PI * degrees) / 180.0
+}
+
+export function toDegrees(radians: number): number {
+    return (180.0 * radians) / Math.PI
+}

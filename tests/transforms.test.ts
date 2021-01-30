@@ -75,4 +75,28 @@ describe("Translation, Rotation and Scaling transforms unit tests", () => {
 
         expect(isEqual(res, expected)).toBeTruthy()
     })
+
+    it("should create an orthogonal projection transform", () => {
+        
+        const pointA = vec4(0.0, 0.0, -6.0, 1.0)
+
+        const projMat = transforms.ortho(-1.0, 1.0, -1.0, 1.0, -1.0, 1.0)
+
+        const res = vecMul(projMat, pointA)
+
+        expect(isEqual(res, pointA)).toBeTruthy()
+    })
+
+    it("should create a perspective projection transform", () => {
+        
+        const pointA = vec4(0.0, 0.0, -6.0, 1.0)
+
+        const projMat = transforms.perspective(45.0, 600 / 800, 1, 100)
+
+        const res = vecMul(projMat, pointA)
+        const expected = vec4(0.0, 0.0, 4.1, 6.0)
+
+        res.forEach((element, i) => expect(res[i]).toBeCloseTo(expected[i]))
+
+    })
 })

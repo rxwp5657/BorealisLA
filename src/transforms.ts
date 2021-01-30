@@ -60,3 +60,32 @@ export function lookAt(position: vec4.Vec4, target: vec4.Vec4, up: vec4.Vec4): M
 
     return matMul(invR, invT)
 }
+
+export function ortho(l: number, r: number, b: number, t: number, n: number, f: number) : Mat4 {
+
+    const x = 2.0 / (r - l)
+    const y = 2.0 / (t - b)
+    const z = 2.0 / (f - n)
+
+    const p = mat4(  x, 0.0, 0.0, (r + l) / (r - l),
+                   0.0,   y, 0.0, (t + b) / (t - b),
+                   0.0, 0.0,   z, (f + n) / (f - n),
+                   0.0, 0.0, 0.0, 1.0)
+
+    return p
+}
+
+export function perspective(fov: number, a: number, n: number, f: number): Mat4 {
+    
+    const c = 1.0 / (Math.tan(toRadians(fov) / 2.0))
+
+    const x = -((f + n) / (f - n))
+    const y = -((2 * f * n) / (f - n))
+
+    const p = mat4(c/a, 0.0, 0.0, 0.0,
+                   0.0,   c, 0.0, 0.0,
+                   0.0, 0.0,   x,   y,
+                   0.0, 0.0,-1.0, 0.0)
+
+    return p
+}

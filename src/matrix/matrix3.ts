@@ -3,7 +3,7 @@ import { det as mat2Det } from "./matrix2"
 
 import { submat } from "./common"
 
-import { EPSILON } from "../utils"
+import { EPSILON } from "../commons"
 
 export type Mat3 = [number, number, number, 
                     number, number, number,
@@ -67,12 +67,13 @@ export function matMul(a: Mat3, b: Mat3): Mat3 {
             dot(r2, c0), dot(r2, c1), dot(r2, c2)]
 }
 
-export function vecMul(m: Mat3, v: Vec3): Vec3 {
-    let r0 = vec3(m[0], m[1], m[2])
-    let r1 = vec3(m[3], m[4], m[5])
-    let r2 = vec3(m[6], m[7], m[8])
+export function vecMul(v: Vec3, m: Mat3): Vec3 {
 
-    return vec3(dot(r0, v), dot(r1, v), dot(r2, v))
+    let c0 = vec3(m[0], m[3], m[6])
+    let c1 = vec3(m[1], m[4], m[7])
+    let c2 = vec3(m[2], m[5], m[8])
+
+    return vec3(dot(v, c0), dot(v, c1), dot(v, c2))
 }
 
 export function inverse(mat: Mat3) : Mat3 {

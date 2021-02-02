@@ -2,7 +2,7 @@ import { create as vec4, dot, Vec4 } from "../vector/vec4"
 import { det as mat3Det } from "./matrix3"
 import { submat } from "./common"
 
-import { EPSILON } from "../utils"
+import { EPSILON } from "../commons"
 
 export type Mat4 = [number, number, number, number,
                     number, number, number, number,
@@ -76,13 +76,14 @@ export function matMul(a: Mat4, b: Mat4): Mat4 {
             dot(r3, c0), dot(r3, c1), dot(r3, c2), dot(r3, c3)]
 }
 
-export function vecMul(m: Mat4, v: Vec4): Vec4 {
-    let r0 = vec4(m[0], m[1], m[2], m[3])
-    let r1 = vec4(m[4], m[5], m[6], m[7])
-    let r2 = vec4(m[8], m[9], m[10],m[11])
-    let r3 = vec4(m[12],m[13],m[14],m[15])
+export function vecMul(v: Vec4, m: Mat4): Vec4 {
 
-    return vec4(dot(r0, v), dot(r1, v), dot(r2, v), dot(r3, v))
+    let c0 = vec4(m[0], m[4], m[8], m[12])
+    let c1 = vec4(m[1], m[5], m[9], m[13])
+    let c2 = vec4(m[2], m[6], m[10],m[14])
+    let c3 = vec4(m[3], m[7], m[11],m[15])
+
+    return vec4(dot(v, c0), dot(v, c1), dot(v, c2), dot(v, c3))
 }
 
 export function inverse(mat: Mat4) : Mat4 {

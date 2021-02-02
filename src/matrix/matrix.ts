@@ -6,7 +6,7 @@ import { Vec2 } from "../vector/vec2"
 import { Vec3 } from "../vector/vec3"
 import { Vec4 } from "../vector/vec4"
 
-import { funcMapper } from "../utils"
+import { funcMapper } from "../commons"
 
 export function add(a: mat2.Mat2, b: mat2.Mat2, ...rest: mat2.Mat2[]): mat2.Mat2;
 export function add(a: mat3.Mat3, b: mat3.Mat3, ...rest: mat3.Mat3[]): mat3.Mat3;
@@ -59,9 +59,9 @@ export function mul(a: number[],  b: number[], ...rest: number[][]): number[] {
     return rest.reduce((acc, mat) => func(acc, mat), result)
 }
 
-export function vecMul(mat: mat2.Mat2, vec: Vec2): Vec2;
-export function vecMul(mat: mat3.Mat3, vec: Vec3): Vec3;
-export function vecMul(mat: mat4.Mat4, vec: Vec4): Vec4;
+export function vecMul(vec: Vec2, mat: mat2.Mat2): Vec2;
+export function vecMul(vec: Vec3, mat: mat3.Mat3): Vec3;
+export function vecMul(vec: Vec4, mat: mat4.Mat4): Vec4;
 export function vecMul(mat: number[],  vec: number[]): number[] {
 
     const mapper: funcMapper = {
@@ -70,7 +70,7 @@ export function vecMul(mat: number[],  vec: number[]): number[] {
         16 : mat4.vecMul,
     }
 
-    return mapper[mat.length](mat, vec)
+    return mapper[mat.length](vec, mat)
 }
 
 export function scalarMul(mat: mat2.Mat2, s: number): mat2.Mat2;

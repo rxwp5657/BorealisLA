@@ -1,4 +1,4 @@
-import { EPSILON } from "../utils"
+import { EPSILON } from "../commons"
 import { create as vec2, dot, Vec2 } from "../vector/vec2"
 
 export type Mat2 = [number, number, 
@@ -43,12 +43,12 @@ export function matMul(a: Mat2, b: Mat2): Mat2 {
             dot(r1, c0), dot(r1, c1)]
 }
 
-export function vecMul(mat: Mat2, v: Vec2): Vec2 {
+export function vecMul(v: Vec2, mat: Mat2): Vec2 {
 
-    let r0 = vec2(mat[0], mat[1])
-    let r1 = vec2(mat[2], mat[3])
+    let c0 = vec2(mat[0], mat[2])
+    let c1 = vec2(mat[1], mat[3])
 
-    return vec2(dot(r0, v), dot(r1, v))
+    return vec2(dot(v, c0), dot(v, c1))
 }
 
 export function inverse(mat: Mat2) : Mat2 {

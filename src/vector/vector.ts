@@ -2,7 +2,7 @@ import * as vec2 from "./vec2"
 import * as vec3 from "./vec3"
 import * as vec4 from "./vec4"
 
-import { funcMapper, EPSILON} from "../utils"
+import { funcMapper, EPSILON } from "../commons"
 
 export function length(vec: vec2.Vec2) : number;
 export function length(vec: vec3.Vec3) : number;
